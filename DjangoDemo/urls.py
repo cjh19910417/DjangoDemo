@@ -1,7 +1,8 @@
 from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
-from Demo.views import hello
+from Demo.views import hello, hours_ahead
+from Demo.views import current_datetime
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -11,4 +12,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     (r'^hello/$', hello),
+    (r'now/$',current_datetime),
+    (r'now/plus/(\d{1,2})/$',hours_ahead),
 )
