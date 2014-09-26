@@ -3,6 +3,7 @@ from django.shortcuts import render, render_to_response
 
 # Create your views here.
 from django.http import HttpResponse, Http404
+from django.template import TemplateDoesNotExist
 
 
 def hello(request):
@@ -27,3 +28,10 @@ def hours_ahead(request, offset):
 def display_request_meta(request):
     metas = request.META.items()
     return render_to_response("display_requestMeta.html", locals())
+
+
+def direct_to_template(request, template_name):
+    try:
+        return render_to_response("%s.html" % template_name)
+    except TemplateDoesNotExist:
+        raise Http404()

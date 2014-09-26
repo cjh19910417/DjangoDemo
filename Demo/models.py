@@ -24,11 +24,21 @@ class Author(models.Model):
         return u'%s %s' % (self.first_name, self.last_name)
 
 
+class BookManager(models.Manager):
+    def title_count(self, keyword):
+        return super.filter(title__icontain=keyword).count()
+
+    def get_queryset(self):
+        return super(BookManager, self).get_queryset().filter(title='python')
+
+
 class Book(models.Model):
     title = models.CharField(max_length=100)
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher)
     publication_date = models.DateField(blank=True, null=True)
+    num_pages = models.IntegerField(blank=True, null=True)
+    book_objects = BookManager()
 
     def __unicode__(self):
         return self.title

@@ -36,7 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap_toolkit',
     'Demo',
+    'demo_app',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,7 +89,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = ' /static/'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
+    #os.path.join(BASE_DIR,  '/demo_app/templates'),
 )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+BOOTSTRAP_BASE_URL = STATIC_URL + 'bootstrap/'
+BOOTSTRAP_CSS_BASE_URL = BOOTSTRAP_BASE_URL + 'css/'
+BOOTSTRAP_CSS_URL = BOOTSTRAP_CSS_BASE_URL + 'bootstrap.min.css'
+BOOTSTRAP_JS_BASE_URL = BOOTSTRAP_BASE_URL + 'js/'
+
+# Enable for single bootstrap.js file
+BOOTSTRAP_JS_URL = BOOTSTRAP_JS_BASE_URL + 'bootstrap.min.js'
+
+# BOOTSTRAP_BASE_URL = 'http://twitter.github.com/bootstrap/assets/'
+# BOOTSTRAP_CSS_BASE_URL  = BOOTSTRAP_BASE_URL + 'css/'
+# BOOTSTRAP_CSS_URL       = BOOTSTRAP_CSS_BASE_URL + 'bootstrap.css'
+# BOOTSTRAP_JS_BASE_URL   = BOOTSTRAP_BASE_URL + 'js/'
+#
+# # Enable for single bootstrap.js file
+# BOOTSTRAP_JS_URL        = BOOTSTRAP_JS_BASE_URL + 'bootstrap.js'
